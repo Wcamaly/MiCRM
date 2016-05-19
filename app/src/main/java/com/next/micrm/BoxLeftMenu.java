@@ -156,7 +156,7 @@ public class BoxLeftMenu extends Fragment {
             return true;
         }
         if(item.getItemId() == R.id.action_example){
-            Toast.makeText(getActivity(), "Navegacion Cajon.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(),getString(R.string.toast_help), Toast.LENGTH_SHORT).show();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -178,7 +178,7 @@ public class BoxLeftMenu extends Fragment {
         ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
-
+        actionBar.setHomeAsUpIndicator(R.mipmap.ic_drawer);
         mDrawerToggle = new ActionBarDrawerToggle(
                 getActivity(),
                 mDrawerLayout,

@@ -18,13 +18,13 @@ import com.google.android.gms.common.api.GoogleApiClient;
 public class MainActivity extends ActionBarActivity implements NavigationDrawerCallbacks {
     private CharSequence mTitle;
     private BoxLeftMenu mNavigationDrawerFragment;
-    /**
+
+    private GoogleApiClient client;
+
+    @Override /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
-    private GoogleApiClient client;
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -41,40 +41,63 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.container,
-                        MainActivityFragment.newInstace(position + 1)).commit();
+                        MainActivityFragment.newInstace(position + 1,
+                                getSectionName(position+1),
+                                getSectionImage(position + 1)))
+                .commit();
     }
 
     public void onSectionAttached(int number) {
+        mTitle = (CharSequence) getSectionName(number);
+    }
+    public int getSectionImage (int number){
         switch (number) {
             case 1:
-                mTitle = getString(R.string.navigation_drawer_home);
-                break;
-            case 2:
-                mTitle = getString(R.string.navigation_drawer_people);
-                break;
-            case 3:
-                mTitle = getString(R.string.navigation_drawer_organization);
-                break;
-            case 4:
-                mTitle = getString(R.string.navigation_drawer_commerce);
-                break;
-            case 5:
-                mTitle = getString(R.string.navigation_drawer_activity);
-                break;
-        }
-    }
+                return R.mipmap.ic_home;
 
+            case 2:
+                return R.mipmap.ic_people;
+
+            case 3:
+                return R.mipmap.ic_organization;
+
+            case 4:
+                return R.mipmap.ic_commerce;
+
+            case 5:
+                return R.mipmap.ic_activity;
+
+        }
+        return R.mipmap.ic_home;
+    }
+    public String getSectionName(int number){
+        switch (number) {
+            case 1:
+                return getString(R.string.navigation_drawer_home);
+            case 2:
+                return getString(R.string.navigation_drawer_people);
+            case 3:
+                return getString(R.string.navigation_drawer_organization);
+            case 4:
+                return getString(R.string.navigation_drawer_commerce);
+            case 5:
+                return getString(R.string.navigation_drawer_activity);
+        }
+        return (String) getTitle();
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if (!mNavigationDrawerFragment.isDrawerOpen()) {
-            // Only show items in the action bar relevant to this screen
-            // if the drawer is not showing. Otherwise, let the drawer
-            // decide what to show in the action bar.
             getMenuInflater().inflate(R.menu.menu_main, menu);
             restoreActionBar();
             return true;
         }
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
     }
 
     private void restoreActionBar() {
@@ -84,17 +107,6 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerC
         actionBar.setTitle(mTitle);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     public void onStart() {

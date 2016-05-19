@@ -6,6 +6,7 @@
     android:divider="@android:color/transparent"
     android:dividerHeight="0dp"
     tools:context="com.next.micrm.BoxLeftMenu"
+    android:background="@color/colorPrimaryDark"
     />
 
 

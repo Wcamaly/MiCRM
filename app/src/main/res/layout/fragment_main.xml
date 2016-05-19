@@ -9,19 +9,21 @@
     tools:context="com.next.micrm.MainActivityFragment"
     >
 
-    <TextView
-        android:id="@+id/section_label"
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp" />
+        android:id="@+id/img_section"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
     <TextView
-        android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=""
+        android:id="@+id/section_img"
+        android:layout_below="@+id/img_section"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="Contenido de Play Store"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:layout_marginTop="44dp" />
 
 </RelativeLayout>

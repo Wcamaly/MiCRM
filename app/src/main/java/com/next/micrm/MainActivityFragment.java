@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -14,6 +15,8 @@ import android.widget.TextView;
  */
 public class MainActivityFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
+    private static final String ARG_SECTION_NAME ="section_name";
+    private static final String ARG_SECTION_IMAGE ="section_image";
     public MainActivityFragment() {
     }
 
@@ -27,15 +30,25 @@ public class MainActivityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView =  inflater.inflate(R.layout.fragment_main, container, false);
-        TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-        textView.setText("Este el el contenido de la sección "+Integer.toString(getArguments().getInt(ARG_SECTION_NUMBER)));
+        ImageView imageView = (ImageView) rootView.findViewById(R.id.img_section);
+        TextView textImage = (TextView) rootView.findViewById(R.id.section_img);
+        imageView.setImageResource(getArguments().getInt(ARG_SECTION_IMAGE));
+        textImage.setText(getArguments().getString(ARG_SECTION_NAME));
         return rootView;
     }
-
     public static MainActivityFragment newInstace(int i) {
         MainActivityFragment fragment = new MainActivityFragment();
         Bundle arg = new Bundle();
         arg.putInt(ARG_SECTION_NUMBER,i);
+        fragment.setArguments(arg);
+        return fragment;
+    }
+    public static MainActivityFragment newInstace(int i, String name, int image) {
+        MainActivityFragment fragment = new MainActivityFragment();
+        Bundle arg = new Bundle();
+        arg.putInt(ARG_SECTION_NUMBER,i);
+        arg.putInt(ARG_SECTION_IMAGE, image);
+        arg.putString(ARG_SECTION_NAME, name);
         fragment.setArguments(arg);
         return fragment;
     }
